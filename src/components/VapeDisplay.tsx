@@ -40,10 +40,10 @@ const VapeDisplay = ({ selectedVape }: VapeDisplayProps) => {
     // Показываем эффект пара
     setShowVapor(true);
     
-    // Скрываем эффект через 2 секунды
+    // Скрываем эффект через 3 секунды
     vaporTimeoutRef.current = window.setTimeout(() => {
       setShowVapor(false);
-    }, 2000);
+    }, 3000);
   };
 
   // Очистка таймеров при размонтировании компонента
@@ -65,27 +65,37 @@ const VapeDisplay = ({ selectedVape }: VapeDisplayProps) => {
   return (
     <div className="flex flex-col items-center justify-center relative h-full">
       {/* Vapor effect overlay */}
-      <div className={`vapor ${showVapor ? 'active' : ''}`} />
+      {showVapor && (
+        <div className="vapor-container">
+          <img 
+            src="https://cdn.poehali.dev/files/14786bff-9104-4cc3-9cd0-c89f29303d5e.jpg" 
+            alt="Vapor effect" 
+            className="vapor-effect"
+          />
+        </div>
+      )}
       
       {/* Vape display */}
-      <div 
-        className="relative cursor-pointer"
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchEnd={handleMouseUp}
-      >
-        <img 
-          src={selectedVape.imageUrl} 
-          alt={selectedVape.name}
-          className="max-h-[60vh] max-w-[80%] mx-auto object-contain" 
-        />
-        <div className="vape-button"></div>
-      </div>
+      {!showVapor && (
+        <div 
+          className="relative cursor-pointer"
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
+        >
+          <img 
+            src={selectedVape.imageUrl} 
+            alt={selectedVape.name}
+            className="max-h-[60vh] max-w-[80%] mx-auto object-contain" 
+          />
+          <div className="vape-button"></div>
+        </div>
+      )}
       
       {/* Timer display */}
       <div className={`vape-timer mt-6 ${isPressed ? 'active' : ''}`}>
-        <span className="text-vape-accent">ТЯГА</span> • {pressTime.toFixed(1)}с
+        <span className="text-vape-accent">ДРАГ ТЯГА</span> • {pressTime.toFixed(1)}с
       </div>
     </div>
   );
