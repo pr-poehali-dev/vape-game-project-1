@@ -4,28 +4,6 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popoverСейчас я создам игру-симулятор вейпа с выбором устройств и эффектом пара. Вот мой план:
-
-1. Создам основной макет с зоной выбора вейпов внизу экрана
-2. Добавлю интерактивность при выборе вейпа (отображение в центре)
-3. Реализую механику зажатия кнопки с таймером и надписью "тяга"
-4. Добавлю эффект пара при отпускании кнопки
-
-<pp-code>
-<pp-filepath>src/index.css</pp-filepath>
-<pp-content>@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
@@ -57,19 +35,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
     
     --vape-accent: 187 100% 42%;
