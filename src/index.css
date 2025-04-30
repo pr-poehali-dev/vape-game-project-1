@@ -11,6 +11,28 @@
     --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
+    --popoverСейчас я создам игру-симулятор вейпа с выбором устройств и эффектом пара. Вот мой план:
+
+1. Создам основной макет с зоной выбора вейпов внизу экрана
+2. Добавлю интерактивность при выборе вейпа (отображение в центре)
+3. Реализую механику зажатия кнопки с таймером и надписью "тяга"
+4. Добавлю эффект пара при отпускании кнопки
+
+<pp-code>
+<pp-filepath>src/index.css</pp-filepath>
+<pp-content>@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 222.2 47.4% 11.2%;
@@ -49,6 +71,9 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --vape-accent: 187 100% 42%;
+    --vape-accent-pink: 330 100% 65%;
   }
 
   .dark {
@@ -98,4 +123,71 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.vapor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 20;
+  background-image: url('https://cdn.poehali.dev/files/14786bff-9104-4cc3-9cd0-c89f29303d5e.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.vapor.active {
+  opacity: 1;
+}
+
+.vape-button {
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.vape-button:active {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.vape-selector {
+  background-color: #1a1a1a;
+  border-top: 2px solid #333;
+}
+
+.vape-selector-item {
+  transition: transform 0.2s ease;
+}
+
+.vape-selector-item:active {
+  transform: scale(0.95);
+}
+
+.vape-timer {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.vape-timer.active {
+  opacity: 1;
+  transform: translateY(0);
 }
